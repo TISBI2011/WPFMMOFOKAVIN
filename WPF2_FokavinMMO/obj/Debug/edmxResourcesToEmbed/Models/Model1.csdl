@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WPF2_FokavinMMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WPF2_FokavinMMOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CharacterClass" EntityType="WPF2_FokavinMMOModel.CharacterClass" />
+    <EntitySet Name="Inventory" EntityType="WPF2_FokavinMMOModel.Inventory" />
+    <EntitySet Name="Rarity" EntityType="WPF2_FokavinMMOModel.Rarity" />
+    <EntitySet Name="sysdiagrams" EntityType="WPF2_FokavinMMOModel.sysdiagrams" />
+    <EntitySet Name="User" EntityType="WPF2_FokavinMMOModel.User" />
+    <AssociationSet Name="FK_Inventory_CharacterClass" Association="WPF2_FokavinMMOModel.FK_Inventory_CharacterClass">
+      <End Role="CharacterClass" EntitySet="CharacterClass" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inventory_Rarity" Association="WPF2_FokavinMMOModel.FK_Inventory_Rarity">
+      <End Role="Rarity" EntitySet="Rarity" />
+      <End Role="Inventory" EntitySet="Inventory" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CharacterClass">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Inventory" Relationship="WPF2_FokavinMMOModel.FK_Inventory_CharacterClass" FromRole="CharacterClass" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="Inventory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rarityid" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="CharacterClassid" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CharacterClass" Relationship="WPF2_FokavinMMOModel.FK_Inventory_CharacterClass" FromRole="Inventory" ToRole="CharacterClass" />
+    <NavigationProperty Name="Rarity" Relationship="WPF2_FokavinMMOModel.FK_Inventory_Rarity" FromRole="Inventory" ToRole="Rarity" />
+  </EntityType>
+  <EntityType Name="Rarity">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RarityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Inventory" Relationship="WPF2_FokavinMMOModel.FK_Inventory_Rarity" FromRole="Rarity" ToRole="Inventory" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Inventory_CharacterClass">
+    <End Type="WPF2_FokavinMMOModel.CharacterClass" Role="CharacterClass" Multiplicity="0..1" />
+    <End Type="WPF2_FokavinMMOModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CharacterClass">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="CharacterClassid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inventory_Rarity">
+    <End Type="WPF2_FokavinMMOModel.Rarity" Role="Rarity" Multiplicity="0..1" />
+    <End Type="WPF2_FokavinMMOModel.Inventory" Role="Inventory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rarity">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Inventory">
+        <PropertyRef Name="Rarityid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ef06362a87084673970c90ada4414b10" Name="Diagram1">
+        <EntityTypeShape EntityType="WPF2_FokavinMMOModel.CharacterClass" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="WPF2_FokavinMMOModel.Inventory" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="WPF2_FokavinMMOModel.Rarity" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="WPF2_FokavinMMOModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="WPF2_FokavinMMOModel.User" Width="1.5" PointX="4.75" PointY="4.75" />
+        <AssociationConnector Association="WPF2_FokavinMMOModel.FK_Inventory_CharacterClass" />
+        <AssociationConnector Association="WPF2_FokavinMMOModel.FK_Inventory_Rarity" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
